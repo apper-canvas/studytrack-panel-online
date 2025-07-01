@@ -35,6 +35,33 @@ let studySessions = [
     topicId: null,
     duration: 35,
     date: "2024-01-16T11:20:00Z"
+}
+]
+
+let reminders = [
+  {
+    Id: 1,
+    title: "Math Final Exam",
+    date: "2024-01-20T10:00:00Z",
+    type: "test",
+    subjectId: 1,
+    reminderTime: "2024-01-20T09:00:00Z"
+  },
+  {
+    Id: 2,
+    title: "Physics Quiz",
+    date: "2024-01-18T14:00:00Z",
+    type: "test",
+    subjectId: 2,
+    reminderTime: "2024-01-18T13:30:00Z"
+  },
+  {
+    Id: 3,
+    title: "Review Chemistry Notes",
+    date: "2024-01-17T16:00:00Z",
+    type: "study",
+    subjectId: 3,
+    duration: 60
   }
 ]
 
@@ -97,7 +124,65 @@ export const studySessionService = {
     if (index === -1) {
       throw new Error('Study session not found')
     }
-    studySessions.splice(index, 1)
+studySessions.splice(index, 1)
+    return true
+  },
+
+  async getUpcomingEvents(days = 7) {
+    await delay(200)
+    const now = new Date()
+    const futureDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000)
+    
+    const upcomingSessions = studySessions.filter(s => {
+      const sessionDate = new Date(s.date)
+      return sessionDate >= now && sessionDate <= futureDate
+    })
+    
+    const upcomingReminders = reminders.filter(r => {
+      const reminderDate = new Date(r.date)
+      return reminderDate >= now && reminderDate <= futureDate
+    })
+    
+    return {
+      sessions: upcomingSessions.map(s => ({ ...s })),
+      reminders: upcomingReminders.map(r => ({ ...r }))
+    }
+  },
+
+  async createReminder(reminderData) {
+    await delay(300)
+    const newId = Math.max(...reminders.map(r => r.Id), 0) + 1
+    const newReminder = {
+      Id: newId,
+      ...reminderData,
+      date: reminderData.date || new Date().toISOString()
+    }
+    reminders.push(newReminder)
+    return { ...newReminder }
+  },
+
+  async getReminders() {
+    await delay(150)
+    return [...reminders]
+  },
+
+  async updateReminder(id, reminderData) {
+    await delay(250)
+    const index = reminders.findIndex(r => r.Id === id)
+    if (index === -1) {
+      throw new Error('Reminder not found')
+    }
+    reminders[index] = { ...reminders[index], ...reminderData }
+    return { ...reminders[index] }
+  },
+
+  async deleteReminder(id) {
+    await delay(200)
+    const index = reminders.findIndex(r => r.Id === id)
+    if (index === -1) {
+      throw new Error('Reminder not found')
+    }
+    reminders.splice(index, 1)
     return true
   }
 }

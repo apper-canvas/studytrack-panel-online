@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ApperIcon from '@/components/ApperIcon'
-
+import CalendarWidget from '@/components/molecules/CalendarWidget'
 const Sidebar = ({ isCollapsed, onToggle }) => {
   const location = useLocation()
 
@@ -75,7 +75,12 @@ const navItems = [
             </li>
           ))}
         </ul>
-      </nav>
+</nav>
+
+      {/* Calendar Widget */}
+      <div className="px-3 pb-4">
+        <CalendarWidget isCollapsed={isCollapsed} />
+      </div>
 
       {/* Collapse Toggle */}
       <div className="p-3 border-t border-white/20">
