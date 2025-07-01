@@ -1,0 +1,95 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Toast Customization */
+.Toastify__toast {
+  @apply rounded-lg shadow-lg;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  min-height: 48px;
+  max-width: 350px;
+}
+
+.Toastify__toast--success {
+  @apply bg-white border-l-4 border-success text-gray-800;
+}
+
+.Toastify__toast--error {
+  @apply bg-white border-l-4 border-error text-gray-800;
+}
+
+.Toastify__toast--warning {
+  @apply bg-white border-l-4 border-warning text-gray-800;
+}
+
+.Toastify__toast--info {
+  @apply bg-white border-l-4 border-info text-gray-800;
+}
+
+.Toastify__progress-bar--success {
+  @apply bg-success;
+}
+
+.Toastify__progress-bar--error {
+  @apply bg-error;
+}
+
+.Toastify__progress-bar--warning {
+  @apply bg-warning;
+}
+
+.Toastify__progress-bar--info {
+  @apply bg-info;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Progress ring animation */
+.progress-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.progress-ring-circle {
+  transition: stroke-dasharray 0.8s ease-out;
+}
+
+/* Focus mode styles */
+.focus-mode {
+  filter: blur(1px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.focus-mode-active {
+  filter: none;
+  opacity: 1;
+  pointer-events: auto;
+}
