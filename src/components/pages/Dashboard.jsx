@@ -8,6 +8,7 @@ import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
 import Empty from '@/components/ui/Empty'
 import ApperIcon from '@/components/ApperIcon'
+import StudyStreakVisualization from '@/components/molecules/StudyStreakVisualization'
 import { subjectService } from '@/services/api/subjectService'
 import { testResultService } from '@/services/api/testResultService'
 import { studySessionService } from '@/services/api/studySessionService'
@@ -107,7 +108,10 @@ const Dashboard = () => {
           color="info"
           subtitle="Currently studying"
         />
-      </div>
+</div>
+
+      {/* Study Streak Visualization */}
+      <StudyStreakVisualization />
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
