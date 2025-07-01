@@ -6,11 +6,12 @@ import ApperIcon from '@/components/ApperIcon'
 const Sidebar = ({ isCollapsed, onToggle }) => {
   const location = useLocation()
 
-  const navItems = [
+const navItems = [
     { path: '/', icon: 'LayoutDashboard', label: 'Dashboard' },
     { path: '/subjects', icon: 'BookOpen', label: 'Subjects' },
     { path: '/mock-tests', icon: 'FileText', label: 'Mock Tests' },
     { path: '/progress', icon: 'TrendingUp', label: 'Progress' },
+    { path: '/analytics', icon: 'BarChart3', label: 'Analytics Charts' },
     { path: '/timer', icon: 'Clock', label: 'Study Timer' },
   ]
 

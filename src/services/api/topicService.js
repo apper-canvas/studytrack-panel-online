@@ -99,8 +99,13 @@ export const topicService = {
     const index = topics.findIndex(t => t.Id === id)
     if (index === -1) {
       throw new Error('Topic not found')
-    }
+}
     topics.splice(index, 1)
     return true
+  },
+
+  async getTopicNames() {
+    await delay(150)
+    return [...new Set(topics.map(t => t.name))]
   }
 }

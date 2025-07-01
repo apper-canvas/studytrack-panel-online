@@ -9,21 +9,22 @@ import MockTests from '@/components/pages/MockTests'
 import TestSession from '@/components/pages/TestSession'
 import TestResults from '@/components/pages/TestResults'
 import Progress from '@/components/pages/Progress'
+import AnalyticsCharts from '@/components/pages/AnalyticsCharts'
 import Timer from '@/components/pages/Timer'
-
 function App() {
   return (
     <Router>
       <div className="App">
         <Layout>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+<Route path="/" element={<Dashboard />} />
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/subjects/:id" element={<SubjectDetail />} />
             <Route path="/mock-tests" element={<MockTests />} />
             <Route path="/test/:testId" element={<TestSession />} />
             <Route path="/test-results/:resultId" element={<TestResults />} />
             <Route path="/progress" element={<Progress />} />
+            <Route path="/analytics" element={<AnalyticsCharts />} />
             <Route path="/timer" element={<Timer />} />
           </Routes>
         </Layout>

@@ -219,7 +219,7 @@ const Dashboard = () => {
         <h3 className="text-xl font-display font-semibold text-gray-900 mb-6">
           Quick Actions
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <button
             onClick={() => navigate('/subjects')}
             className="flex items-center space-x-3 p-4 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all duration-200"
@@ -242,6 +242,14 @@ const Dashboard = () => {
           >
             <ApperIcon name="Play" size={20} className="text-primary" />
             <span className="font-medium text-gray-900">Start Timer</span>
+          </button>
+          
+          <button
+            onClick={() => navigate('/analytics')}
+            className="flex items-center space-x-3 p-4 rounded-lg border-2 border-gray-200 hover:border-primary hover:bg-primary/5 transition-all duration-200"
+          >
+            <ApperIcon name="BarChart3" size={20} className="text-primary" />
+            <span className="font-medium text-gray-900">View Analytics</span>
           </button>
         </div>
       </Card>

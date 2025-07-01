@@ -88,8 +88,54 @@ export const testResultService = {
     const index = testResults.findIndex(r => r.Id === id)
     if (index === -1) {
       throw new Error('Test result not found')
-    }
+}
     testResults.splice(index, 1)
     return true
+  },
+
+  async getTopicPerformance() {
+    await delay(300)
+    // Calculate performance by topic based on test results
+    const topicPerformance = {}
+    
+    testResults.forEach(result => {
+      result.answers?.forEach((answer, questionIndex) => {
+        const topicId = questionIndex + 1 // Simplified topic mapping
+        const topicName = `Topic ${topicId}`
+        
+        if (!topicPerformance[topicName]) {
+          topicPerformance[topicName] = {
+            totalQuestions: 0,
+            correctAnswers: 0,
+            attempts: 0
+          }
+        }
+        
+        topicPerformance[topicName].totalQuestions++
+        topicPerformance[topicName].attempts++
+        if (answer.isCorrect) {
+          topicPerformance[topicName].correctAnswers++
+        }
+      })
+    })
+    
+    return Object.entries(topicPerformance).map(([topic, data]) => ({
+      topic,
+      averageScore: (data.correctAnswers / data.totalQuestions) * 100,
+      totalAttempts: data.attempts
+    }))
+  },
+
+  async getPerformanceHeatmap() {
+    await delay(250)
+    const performance = await this.getTopicPerformance()
+    
+    return performance.map(item => ({
+      topic: item.topic,
+      score: Math.round(item.averageScore),
+      category: item.averageScore >= 80 ? 'excellent' : 
+                item.averageScore >= 60 ? 'good' : 
+                item.averageScore >= 40 ? 'needs-improvement' : 'poor'
+    }))
   }
 }
